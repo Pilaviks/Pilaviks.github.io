@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Aidos Taiyr</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Aidos Taiyr — engineer working across medical imaging, protein structure, and embedded hardware.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --bg: #141318;
+            --text: #dcdae2;
+            --text-muted-1: #a8a5b0;
+            --text-muted-2: #8b8993;
+            --text-muted-3: #6b6875;
+            --text-muted-4: #5c5967;
+            --border: #262530;
+            --accent: oklch(0.68 0.09 260);
+            --selection-bg: #a9a0d6;
+            --selection-fg: #12111a;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'IBM Plex Sans', sans-serif;
+            min-height: 100vh;
+            width: 100%;
+        }
+        
+         ::selection {
+            background: var(--selection-bg);
+            color: var(--selection-fg);
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        .mono {
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        
+        .wrap {
+            max-width: 960px;
+            margin: 0 auto;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+        /* Header */
+        
+        header {
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        
+        .logo {
+            font-size: 13px;
+            color: var(--text-muted-2);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            font-size: 13px;
+            color: var(--text-muted-2);
+        }
+        
+        .nav-links a {
+            transition: color 0.15s ease;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            color: var(--text);
+        }
+        /* Hero */
+        
+        .hero {
+            padding: 64px 0 72px;
+            display: grid;
+            grid-template-columns: 1fr 220px;
+            gap: 48px;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .hero-eyebrow {
+            font-size: 13px;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+        
+        .hero h1 {
+            font-size: 44px;
+            font-weight: 600;
+            line-height: 1.15;
+            margin: 0 0 20px;
+            letter-spacing: -0.5px;
+        }
+        
+        .hero p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-muted-1);
+            margin: 0 0 24px;
+            max-width: 480px;
+        }
+        
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 12px;
+            color: var(--text-muted-2);
+        }
+        
+        .badge {
+            padding: 6px 12px;
+            border: 1px solid #2a2933;
+            border-radius: 3px;
+        }
+        
+        .avatar-placeholder {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: #1b1a22;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: var(--text-muted-4);
+            justify-self: center;
+            overflow: hidden;
+        }
+        
+        .avatar-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* Section labels */
+        
+        .section-label {
+            font-size: 13px;
+            color: var(--text-muted-3);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 28px;
+        }
+        /* Where I've worked */
+        
+        .worked {
+            padding: 64px 0 0;
+        }
+        
+        .worked-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+        
+        .worked-cell {
+            background: var(--bg);
+            padding: 24px 20px;
+        }
+        
+        .worked-cell .title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .worked-cell .desc {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--text-muted-2);
+        }
+        /* Selected work */
+        
+        .work {
+            padding: 72px 0 0;
+        }
+        
+        .project {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 24px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+        
+        .project:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .thumb-placeholder {
+            width: 120px;
+            height: 90px;
+            border-radius: 6px;
+            background: #1b1a22;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: var(--text-muted-4);
+            overflow: hidden;
+        }
+        
+        .thumb-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .project .eyebrow {
+            font-size: 12px;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        
+        .project .eyebrow.muted {
+            color: var(--text-muted-4);
+        }
+        
+        .project h3 {
+            font-size: 19px;
+            font-weight: 600;
+            margin: 0 0 10px;
+        }
+        
+        .project p {
+            font-size: 14px;
+            line-height: 1.65;
+            color: var(--text-muted-1);
+            margin: 0;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 14px;
+            font-size: 12px;
+            color: var(--text-muted-2);
+            border-bottom: 1px solid transparent;
+            transition: color 0.15s ease, border-color 0.15s ease;
+        }
+        
+        .project-link:hover,
+        .project-link:focus-visible {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+        
+        .project-link svg {
+            width: 13px;
+            height: 13px;
+            flex-shrink: 0;
+        }
+        /* Footer */
+        
+        footer {
+            padding: 56px 0 100px;
+            margin-top: 56px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            font-size: 13px;
+            color: var(--text-muted-2);
+            border-top: 1px solid var(--border);
+            padding-top: 28px;
+        }
+        
+        footer a {
+            transition: color 0.15s ease;
+        }
+        
+        footer a:hover,
+        footer a:focus-visible {
+            color: var(--text);
+        }
+        
+        @media (max-width: 720px) {
+            .wrap {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+            header {
+                flex-direction: column;
+                gap: 12px;
+                padding-top: 24px;
+            }
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 40px 0 48px;
+                text-align: left;
+            }
+            .avatar-placeholder {
+                justify-self: start;
+            }
+            .hero h1 {
+                font-size: 34px;
+            }
+            .worked-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .project {
+                grid-template-columns: 90px 1fr;
+                gap: 16px;
+            }
+            .thumb-placeholder {
+                width: 90px;
+                height: 68px;
+            }
+        }
+        
+        @media (max-width: 420px) {
+            .worked-grid {
+                grid-template-columns: 1fr;
+            }
+            .project {
+                grid-template-columns: 1fr;
+            }
+            .thumb-placeholder {
+                width: 100%;
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrap">
+        <header>
+            <div class="logo mono">aidostaiyr</div>
+            <nav class="nav-links mono">
+                <a href="#work">work</a>
+                <a href="#about">about</a>
+                <a href="#contact">contact</a>
+            </nav>
+        </header>
+    </div>
+
+    <div class="wrap">
+        <section class="hero" id="about">
+            <div>
+                <div class="hero-eyebrow mono">hi, I'm</div>
+                <h1>Aidos Taiyr</h1>
+                <p>
+                    I am an engineer who builds things — medical imaging pipelines, protein-structure models, embedded control systems — and I go wherever the interesting technical problem is, not wherever the field boundary says I should stay.
+                </p>
+                <p>
+                    I am passionate about solving interesting real life problems using computational methods.
+                </p>
+                <div class="badge-row mono">
+                    <span class="badge">Research Assistant, NU Med</span>
+                    <span class="badge">Tech Advisor, DS Club</span>
+                </div>
+            </div>
+            <div class="avatar-placeholder mono">
+                <img src="./photo.jpg" alt="Aidos Taiyr" style="object-position: 50% 27%; transform: scale(1.05);">
+            </div>
+        </section>
+    </div>
+
+    <div class="wrap">
+        <section class="worked">
+            <div class="section-label mono">Domains</div>
+            <div class="worked-grid">
+                <div class="worked-cell">
+                    <div class="title">Neuroimaging pipelines</div>
+                    <div class="desc">Data preprocessing, anatomical and statistical brain template construction, and validation.</div>
+                </div>
+                <div class="worked-cell">
+                    <div class="title">Structural biology</div>
+                    <div class="desc">Graph neural networks, spatial features.</div>
+                </div>
+                <div class="worked-cell">
+                    <div class="title">Embedded systems</div>
+                    <div class="desc">Bare-metal C, sensor fusion, control loops.</div>
+                </div>
+                <div class="worked-cell">
+                    <div class="title">Applied ML</div>
+                    <div class="desc">Classical + deep models, benchmarking.</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="wrap">
+        <section class="work" id="work">
+            <div class="section-label mono">My work</div>
+
+            <article class="project">
+                <div class="thumb-placeholder mono">
+                    <img src="./tskimg.png" alt="Sagittal MRI slice with probabilistic brain atlas segmentation overlay">
+                </div>
+                <div>
+                    <div class="eyebrow mono">01 · NU School of Medicine · Research project</div>
+                    <h3>Kazakh Female Brain Atlas</h3>
+                    <p>First female-specific structural MRI brain template for the Kazakh population, built from 55 T1-weighted subjects. Led the pipeline design, probabilistic atlas construction, and cross-template validation. The early results were written
+                        up as a preprint and the final version is in the process of being submitted for a journal publication.
+                    </p>
+                    <a class="project-link mono" href="https://assets-eu.researchsquare.com/files/rs-9881225/v1_covered_ea9e9cc2-9826-4dad-af96-64485c7ffbb5.pdf?c=1780417649" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                            <path d="M9 0H2.5A1.5 1.5 0 0 0 1 1.5v13A1.5 1.5 0 0 0 2.5 16h11a1.5 1.5 0 0 0 1.5-1.5V6l-6-6Zm4.5 6H9V1.5L13.5 6ZM3.5 8.5h9v1h-9v-1Zm0 2.5h9v1h-9v-1Zm0 2.5h6v1h-6v-1Z"></path>
+                        </svg> Preprint
+                    </a>
+                </div>
+            </article>
+
+            <article class="project">
+                <div class="thumb-placeholder mono">
+                    <img src="./dna-riso.png" alt="Riso-style illustration of a DNA double helix with a highlighted variant site">
+                </div>
+                <div>
+                    <div class="eyebrow mono">02 · NU Department of Biology</div>
+                    <h3>Genomic Variant Effect Prediction with AlphaGenome</h3>
+                    <p>Applied AlphaGenome biological deep learning framework to score candidate genomic variants for RNA and splicing effects, interpreting predictions across tissues as part of a computational biology literature review on ageing–cancer
+                        interplay.
+                    </p>
+                    <a class="project-link mono" href="https://github.com/Pilaviks/alphagenome-variant-effects" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path>
+                        </svg>
+                        GitHub
+                    </a>
+                </div>
+            </article>
+
+            <article class="project">
+                <div class="thumb-placeholder mono">
+                    <img src="./protein_interface.png" alt="3D rendering of a protein surface with electrostatic potential and interface region highlighted">
+                </div>
+                <div>
+                    <div class="eyebrow mono">03 · Independent project</div>
+                    <h3>Geometry-Aware Protein-Protein Interface Prioritization</h3>
+                    <p>Designed and trained a custom 3-layer distance-weighted message-passing GNN over residue-level spatial graphs, built entirely from single-chain 3D structure — no partner chain, sequence alignments, or pretrained language models. Since
+                        interface residues are sparse, evaluated the model in a rank-based setting (PR-AUC, Precision@K, F1@K) with complex-level train/test splits to prevent leakage, benchmarking it against self-implemented logistic regression, random
+                        forest, and heuristic baselines on ~1,900 PDB complexes, with 3D case studies of top-ranked residues.</p>
+                    <a class="project-link mono" href="https://github.com/Pilaviks/Comp_BioChem_Project" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path>
+                        </svg> GitHub
+                    </a>
+                </div>
+            </article>
+
+            <article class="project">
+                <div class="thumb-placeholder mono">
+                    <img src="./AHRS_project.jpg" alt="IMU click board wired via ribbon cable to an STM32F411 mikromedia development board">
+                </div>
+                <div>
+                    <div class="eyebrow mono">04 · Independent project</div>
+                    <h3>Miniature AHRS on STM32F411</h3>
+                    <p>Bare-metal C on ARM Cortex-M4 — interrupt-driven sensor fusion, complementary filter, PID control loop — debugged without any UART tooling.</p>
+                    <a class="project-link mono" href="https://github.com/Pilaviks/STM32-AHRS" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path>
+                        </svg> GitHub
+                    </a>
+                </div>
+            </article>
+
+            <article class="project">
+                <div class="thumb-placeholder mono">
+                    <img src="./pneumonia_detection.png" alt="Chest X-ray next to its Grad-CAM heatmap overlay highlighting the model's focus region">
+                </div>
+                <div>
+                    <div class="eyebrow mono">05 · Independent project</div>
+                    <h3>Pneumonia Detection Classifier</h3>
+                    <p>Fine-tuned ResNet-18/50 on 25,000+ DICOM chest X-rays with weighted loss for class imbalance; Grad-CAM heatmaps for interpretability. Best F1 0.6751, recall 0.7521, accuracy 0.84.</p>
+                </div>
+            </article>
+
+            <article class="project">
+                <div class="thumb-placeholder mono" aria-hidden="true">visual</div>
+                <div>
+                    <div class="eyebrow mono">06 · Independent project</div>
+                    <h3>Predicting Term Deposit Subscriptions</h3>
+                    <p>XGBoost and a stacking ensemble (SVM + XGBoost → RF meta) on imbalanced bank marketing data. Stacking ensemble reached F1 0.5606, AUC 0.9102, recall 0.7115.</p>
+                </div>
+            </article>
+
+            <article class="project">
+                <div class="thumb-placeholder mono" aria-hidden="true">visual</div>
+                <div>
+                    <div class="eyebrow mono">07 · Independent project</div>
+                    <h3>Breast Cancer Diagnostic Classifier</h3>
+                    <p>Reproducible scikit-learn SVM pipeline on the UCI Breast Cancer dataset, tuned via GridSearchCV. 96% accuracy, 97% precision, 95% recall.</p>
+                </div>
+            </article>
+        </section>
+    </div>
+
+    <div class="wrap">
+        <footer id="contact" class="mono">
+            <a href="mailto:aidostaiyr78@gmail.com">email</a>
+            <a href="#" data-todo="github-url">github</a>
+            <a href="#" data-todo="linkedin-url">linkedin</a>
+            <a href="./cv.pdf">cv.pdf</a>
+        </footer>
+    </div>
+
+</body>
+
+</html>
