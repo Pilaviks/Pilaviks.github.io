@@ -1,1 +1,5 @@
 .DS_Store
+
+# Personal documents — never publish
+Master_CV.pdf
+*_CV.pdf
